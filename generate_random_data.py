@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 # Generate random data
-num_rows = 30**6  # 1 million rows
+num_rows = 10**6  # 1 million rows
 data = {
     'column1': np.random.randint(0, 100, size=num_rows),
     'column2': np.random.rand(num_rows),
