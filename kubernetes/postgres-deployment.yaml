@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-app
+        image: your-python-app-image  # Replace with your actual image
+        env:
+        - name: DATABASE_HOST
+          value: postgres-db-service
+        - name: DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: DATABASE_NAME
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: DATABASE_USER
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: DATABASE_PASS
+        volumeMounts:
+        - name: app-storage
+          mountPath: /app
+        command: ["python"]
+        args: ["main_file.py", "csv_file.csv", "table_name"]
+      volumes:
+      - name: app-storage
+        persistentVolumeClaim:
+          claimName: app-pvc

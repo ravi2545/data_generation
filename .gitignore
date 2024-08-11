@@ -1,0 +1,37 @@
+virtual/
+**/logs/
+**/.env
+.env/
+__pycache__/
+**/__pycache__/
+
+# Operating system specific files
+.DS_Store
+Thumbs.db
+
+# Node.js dependencies
+node_modules/
+
+# Logs
+*.log
+
+# Environment variables file
+.env
+
+# Build output
+/dist
+/build
+
+# Python-specific
+*.pyc
+__pycache__/
+
+# macOS specific
+*.DS_Store
+
+# Windows specific
+*.log
+*.tmp
+
+# Backup files
+*.bak
