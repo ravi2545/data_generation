@@ -4,10 +4,13 @@ from postgresql_checks import PostgreSQLQueries
 from constants import TablesNames
 
 def process_csv_in_chunks(csv_file, table_name, columns, chunk_size=1000):
-    """ Read a CSV file in chunks and insert into the database. """
-    database = PostgreSQLQueries()
-    database.insert_data(csv_file, table_name, columns, chunk_size)
-    print('successfully extracted and stored data in the DB')
+    try:
+        """ Read a CSV file in chunks and insert into the database. """
+        database = PostgreSQLQueries()
+        database.insert_data(csv_file, table_name, columns, chunk_size)
+        print('successfully extracted and stored data in the DB')
+    except Exception as error:
+        return str(error)
 
 if __name__ == '__main__':
 

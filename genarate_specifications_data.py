@@ -23,11 +23,14 @@ def generate_bike_data(num_rows):
 
 def write_to_csv(file_path, data, columns):
     """Write data to a CSV file."""
-    with open(file_path, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(columns)  # Write header
-        writer.writerows(data)    # Write data rows
-    print(f"Data written to {file_path}")
+    try:
+        with open(file_path, 'w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(columns)  # Write header
+            writer.writerows(data)    # Write data rows
+        print(f"Data written to {file_path}")
+    except Exception as error:
+        print("Error occured du to: {}".format(str(error)))
 
 if __name__ == "__main__":
     # Define parameters
